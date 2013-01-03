@@ -1,10 +1,10 @@
-#!/bin/env python
+#!/usr/bin/env python
 
-import sys, os
+import os
 from optparse import OptionParser
 
-#ApkToolPath = os.path.dirname(os.path.abspath(__file__))
-ApkToolPath = 'c:\\\\android\\\\apkjet'
+ApkToolPath = os.path.dirname(os.path.abspath(__file__))
+#ApkToolPath = 'c:\\\\android\\\\apkjet'
 
 
 def sign_apk(fn, fn_new):
@@ -18,9 +18,9 @@ def sign_apk(fn, fn_new):
     print 'done!!! ... %s' % fn_new
 
 def dec_apk(fn, path_new):
-    if not path_new: 
+    if not path_new:
         file_path, ext = os.path.splitext(fn)
-        path_new = file_path.split('/')[-1] 
+        path_new = file_path.split('/')[-1]
     cmd = '''java -Xmx80m -jar %s/apktool.jar d %s %s''' %(ApkToolPath, fn, path_new )
     print cmd
     os.system(cmd)
@@ -96,6 +96,6 @@ def main():
             bsign_apk(opts.bsign, new_apk)
         else:
             parser.error("building dir not exist")
-        
+
 if __name__ == '__main__':
     main()
